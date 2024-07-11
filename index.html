@@ -126,7 +126,7 @@
     <h3>Orientation</h3>
     <div id="orientation"></div>
     <script>
-        const info = document.querySelector('infoo');
+        const info = document.getElementById('infoo');
         const orientationBlock = document.getElementById('orientation');
         const cameraButton = document.getElementById('cameraButton');
         const freezeButton = document.getElementById('freezeButton');
@@ -183,8 +183,8 @@
 
         // Freeze the current frame from the camera stream
         function freezeFrame() {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = orientation === 'vertical' ? 1080 : 1920;
+            canvas.height = orientation === 'vertical' ? 1920 : 1080;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
