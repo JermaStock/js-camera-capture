@@ -163,9 +163,15 @@
 
                 orientationBlock.textContent = orientation;
 
-                const constraints = orientation === 'vertical' ?
-                    { video: { width: 1080, height: 1920, facingMode: 'environment' }} :
-                    { video: { width: 1920, height: 1080, facingMode: 'environment' }};
+                let constraints;
+
+
+                if (orientation === 'vertical') {
+                    constraints = { video: { width: 1080, height: 1920, facingMode: 'environment' }};
+                }
+                if (orientation === 'horizontal') {
+                    constraints = { video: { width: 1920, height: 1080, facingMode: 'environment' }};
+                }
 
                 stream = await navigator.mediaDevices.getUserMedia(constraints);
 
