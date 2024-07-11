@@ -85,6 +85,14 @@
             width: 100%;
             padding: 10px;
         }
+
+        .info {
+            position: fixed;
+            top:0;
+            left: 0;
+            background: black;
+            color: white;
+        }
     </style>
 
     <h1>Camera Capture 123</h1>
@@ -101,6 +109,7 @@
     <div id="overlay">
         <!-- Content inside the overlay -->
         <div id="overlay-content">
+            <div class="info"></div>
             <video id="video" autoplay></video>
             <canvas id="canvas" style="display: none;"></canvas>
             <img id="capturedImage" style="display: none;" alt="Captured Image">
@@ -117,6 +126,7 @@
     <h3>Orientation</h3>
     <div id="orientation"></div>
     <script>
+        const info = document.querySelector('infoo');
         const orientationBlock = document.getElementById('orientation');
         const cameraButton = document.getElementById('cameraButton');
         const freezeButton = document.getElementById('freezeButton');
@@ -153,7 +163,7 @@
 
                 orientationBlock.textContent = orientation;
 
-                const constraints = orientation === 'horizontal' ?
+                const constraints = orientation === 'vertical' ?
                     { video: { width: 1080, height: 1920,  facingMode: 'environment' }} :
                     { video: { width: 1920, height: 1080,  facingMode: 'environment' }};
 
