@@ -133,6 +133,11 @@
         let stream;
         let frozenFrame = null;
 
+        const orientation = window?.screen?.orientation?.type === 'portrait-primary' || ('orientation' in window && !(+window?.orientation % 180)) ?
+            'vertical' : 'horizontal';
+
+        orientationBlock.textContent = orientation;
+
         window.addEventListener('orientationchange', () => {
             const orientation = window?.screen?.orientation?.type === 'portrait-primary' || ('orientation' in window && !(+window?.orientation % 180)) ?
                 'vertical' : 'horizontal';
