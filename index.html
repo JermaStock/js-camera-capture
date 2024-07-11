@@ -87,7 +87,7 @@
         }
     </style>
 
-    <h1>Camera Capture</h1>
+    <h1>Camera Capture 123</h1>
     <p><a href="https://github.com/do-me/js-camera-capture">https://github.com/do-me/js-camera-capture</a></p>
     <p>Vanilla JS camera capture example, working on desktop and mobile based on navigator.mediaDevices.getUserMedia().
     </p>
@@ -132,7 +132,14 @@
         // Access the camera and stream the video
         async function startCamera() {
             try {
-                stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+                const orientation = window?.screen?.orientation?.type === 'portrait-primary' || ('orientation' in window && !(+window?.orientation % 180)) ?
+                    'vertical' : 'horizontal';
+
+                const constraints = orientation === 'vertical' ?
+                    { video: { width: { ideal: 1080 }, height: { ideal: 1920 },  facingMode: 'environment' }} :
+                    { video: { width: { ideal: 1920 }, height: { ideal: 1080 },  facingMode: 'environment' }};
+
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = stream;
                 video.style.display = 'block';
                 freezeButton.style.display = 'block';
