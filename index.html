@@ -109,7 +109,7 @@
     <div id="overlay">
         <!-- Content inside the overlay -->
         <div id="overlay-content">
-            <div class="info"></div>
+            <div id="infoo" class="info"></div>
             <video id="video" autoplay></video>
             <canvas id="canvas" style="display: none;"></canvas>
             <img id="capturedImage" style="display: none;" alt="Captured Image">
@@ -164,10 +164,13 @@
                 orientationBlock.textContent = orientation;
 
                 const constraints = orientation === 'vertical' ?
-                    { video: { width: 1080, height: 1920,  facingMode: 'environment' }} :
-                    { video: { width: 1920, height: 1080,  facingMode: 'environment' }};
+                    { video: { width: 1080, height: 1920, facingMode: 'environment' }} :
+                    { video: { width: 1920, height: 1080, facingMode: 'environment' }};
 
                 stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                info.textContent = `w: ${stream.getVideoTracks()[0].getSettings().width}, h${stream.getVideoTracks()[0].getSettings().height}`
+
                 video.srcObject = stream;
                 video.style.display = 'block';
                 freezeButton.style.display = 'block';
