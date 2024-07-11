@@ -133,6 +133,13 @@
         let stream;
         let frozenFrame = null;
 
+        window.addEventListener('orientationchange', () => {
+            const orientation = window?.screen?.orientation?.type === 'portrait-primary' || ('orientation' in window && !(+window?.orientation % 180)) ?
+                'vertical' : 'horizontal';
+
+            orientationBlock.textContent = orientation;
+        })
+
         // Access the camera and stream the video
         async function startCamera() {
             try {
