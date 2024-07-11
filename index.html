@@ -113,7 +113,11 @@
             </div>
         </div>
     </div>
+
+    <h3>Orientation</h3>
+    <div id="orientation"></div>
     <script>
+        const orientationBlock = document.getElementById('orientation');
         const cameraButton = document.getElementById('cameraButton');
         const freezeButton = document.getElementById('freezeButton');
         const sendButton = document.getElementById('sendButton');
@@ -134,6 +138,8 @@
             try {
                 const orientation = window?.screen?.orientation?.type === 'portrait-primary' || ('orientation' in window && !(+window?.orientation % 180)) ?
                     'vertical' : 'horizontal';
+
+                orientationBlock.textContent = orientation;
 
                 const constraints = orientation === 'vertical' ?
                     { video: { width: { ideal: 1080 }, height: { ideal: 1920 },  facingMode: 'environment' }} :
